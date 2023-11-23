@@ -1,0 +1,22 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 33
+
+    defaultConfig {
+        minSdkVersion 8
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0.0"
+        buildConfigField "long", "TIMESTAMP", System.currentTimeMillis() + "L"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    dependencies {
+    }
+}
