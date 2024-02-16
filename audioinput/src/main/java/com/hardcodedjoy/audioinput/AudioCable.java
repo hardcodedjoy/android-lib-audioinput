@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright © 2023 HARDCODED JOY S.R.L. (https://hardcodedjoy.com)
+Copyright © 2024 HARDCODED JOY S.R.L. (https://hardcodedjoy.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -27,5 +27,7 @@ SOFTWARE.
 package com.hardcodedjoy.audioinput;
 
 public interface AudioCable {
-    void send(float value);
+    void send(float[] sample); // one multi-channel sample
+    void endOfFrame();
+    void endOfStream();
 }

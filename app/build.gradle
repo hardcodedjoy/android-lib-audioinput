@@ -7,8 +7,8 @@ android {
         applicationId "com.hardcodedjoy.audioinput"
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode 1
-        versionName "1.0.0"
+        versionCode 3
+        versionName "1.1.0"
         buildConfigField "long", "TIMESTAMP", System.currentTimeMillis() + "L"
     }
     buildTypes {
@@ -25,6 +25,7 @@ android {
 }
 
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.aar'])
     implementation "androidx.core:core:1.2.0-rc01"
     implementation project(':audioinput')
 }

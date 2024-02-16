@@ -2,7 +2,7 @@
 <!--
 MIT License
 
-Copyright © 2023 HARDCODED JOY S.R.L. (https://hardcodedjoy.com)
+Copyright © 2024 HARDCODED JOY S.R.L. (https://hardcodedjoy.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +34,7 @@ SOFTWARE.
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
-        android:theme="@style/AppThemeLight"
+        android:theme="@style/SeaSaltEmerald"
         android:allowBackup="false"
         android:supportsRtl="false">
         <activity
@@ -45,16 +45,6 @@ SOFTWARE.
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".AboutActivity"
-            android:launchMode="singleTop"
-            android:exported="true">
-        </activity>
-        <activity
-            android:name=".SettingsActivity"
-            android:launchMode="singleTop"
-            android:exported="true">
         </activity>
     </application>
 </manifest>

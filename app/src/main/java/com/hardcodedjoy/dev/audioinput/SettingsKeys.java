@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+/*
+
 MIT License
 
-Copyright © 2023 HARDCODED JOY S.R.L. (https://hardcodedjoy.com)
+Copyright © 2024 HARDCODED JOY S.R.L. (https://hardcodedjoy.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,30 +22,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
--->
+*/
 
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:left="5dp"
-        android:right="5dp"
-        android:bottom="5dp"
-        android:top="5dp">
+package com.hardcodedjoy.dev.audioinput;
 
-        <shape android:shape="rectangle" >
-            <corners
-                android:bottomLeftRadius="5dp"
-                android:bottomRightRadius="5dp"
-                android:topLeftRadius="5dp"
-                android:topRightRadius="5dp"/>
-            <padding
-                android:top="8dp"
-                android:bottom="8dp"
-                android:left="10dp"
-                android:right="10dp"/>
-            <stroke
-                android:width="2dp"
-                android:color="?android:colorFocusedHighlight" />
-            <solid android:color="#20808080" />
-        </shape>
-    </item>
-</layer-list>
+public class SettingsKeys {
+    // static public final String key = "key";
+
+    static public final String sampleRate = "sampleRate";
+}

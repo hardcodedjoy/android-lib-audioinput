@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright © 2023 HARDCODED JOY S.R.L. (https://hardcodedjoy.com)
+Copyright © 2024 HARDCODED JOY S.R.L. (https://hardcodedjoy.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,9 +24,34 @@ SOFTWARE.
 
 */
 
-package com.hardcodedjoy.util;
+package com.hardcodedjoy.dev.audioinput;
 
-public interface SetGetter {
-    void set(String value);
-    String get();
+import android.annotation.SuppressLint;
+import android.widget.EditText;
+
+import com.hardcodedjoy.appbase.contentview.ContentView;
+import com.hardcodedjoy.appbase.contentview.CvSettingsBase;
+import com.hardcodedjoy.appbase.gui.GuiLinker;
+import com.hardcodedjoy.appbase.gui.SetGetter;
+
+@SuppressLint("ViewConstructor")
+public class CvSettings extends CvSettingsBase {
+
+    @Override
+    public void init() {
+        super.init();
+
+        //noinspection unused
+        Settings settings = (Settings) ContentView.settings;
+        addSettings(R.layout.settings);
+
+        EditText etSampleRate = findViewById(R.id.et_sample_rate);
+
+        GuiLinker.link(etSampleRate, new SetGetter() {
+            @Override
+            public void set(String value) { settings.setSampleRate(value); }
+            @Override
+            public String get() { return "" + settings.getSampleRate(); }
+        });
+    }
 }

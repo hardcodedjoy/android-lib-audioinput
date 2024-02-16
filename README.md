@@ -1,6 +1,6 @@
 # AudioInput
 
-<code>com.hardcodedjoy.audioinput</code> <code>v1.0.0</code><br/>
+<code>com.hardcodedjoy.audioinput</code> <code>v1.1.0</code><br/>
 minSdkVersion: <code>8</code><br/>
 targetSdkVersion: <code>33</code><br/>
 

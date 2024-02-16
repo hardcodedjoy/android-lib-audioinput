@@ -1,8 +1,8 @@
-/*
-
+<?xml version="1.0" encoding="utf-8"?>
+<!--
 MIT License
 
-Copyright © 2023 HARDCODED JOY S.R.L. (https://hardcodedjoy.com)
+Copyright © 2024 HARDCODED JOY S.R.L. (https://hardcodedjoy.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,27 +22,28 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-*/
+-->
 
-package com.hardcodedjoy.util;
 
-import android.content.Context;
-import android.content.res.Resources;
-import android.util.TypedValue;
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?android:colorBackground">
 
-public class ColorUtil {
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sample_rate" />
+    <EditText
+        android:id="@+id/et_sample_rate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:inputType="number"
+        android:selectAllOnFocus="true"
+        tools:ignore="Autofill,LabelFor" />
 
-    static public int getColorBackground(Context context) {
-        Resources.Theme theme = context.getTheme();
-        TypedValue value = new TypedValue();
-        theme.resolveAttribute(android.R.attr.colorBackground, value, true);
-        return value.data;
-    }
-
-    static public int getColorForeground(Context context) {
-        Resources.Theme theme = context.getTheme();
-        TypedValue value = new TypedValue();
-        theme.resolveAttribute(android.R.attr.colorForeground, value, true);
-        return value.data;
-    }
-}
+</LinearLayout>

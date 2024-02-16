@@ -2,7 +2,7 @@
 
 MIT License
 
-Copyright © 2023 HARDCODED JOY S.R.L. (https://hardcodedjoy.com)
+Copyright © 2024 HARDCODED JOY S.R.L. (https://hardcodedjoy.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -44,6 +44,7 @@ public class MicInput {
 
     private final int audioSource;
     private final int chFormat;
+    private final int numChannels;
     private final int sampleRate;
 
     private AudioCable output;
@@ -51,11 +52,21 @@ public class MicInput {
     public MicInput(int audioSource, int chFormat, int sampleRate) {
         this.audioSource = audioSource;
         this.chFormat = chFormat;
+
+        if(this.chFormat == AudioFormat.CHANNEL_IN_MONO) {
+            this.numChannels = 1;
+        } else if(this.chFormat == AudioFormat.CHANNEL_IN_STEREO) {
+            this.numChannels = 2;
+        } else {
+            this.numChannels = 0;
+        }
+
         this.sampleRate = sampleRate;
     }
 
     public int getAudioSource() { return audioSource; }
     public int getChFormat()    { return chFormat;    }
+    public int getNumChannels() { return numChannels; }
     public int getSampleRate()  { return sampleRate;  }
 
     public boolean init(Context context) {
@@ -120,6 +131,8 @@ public class MicInput {
 
             private int n;
             private int i;
+            private int ch;
+            private final float[] sample = new float[numChannels];
             private int read;
             private short[] buf;
 
@@ -148,9 +161,18 @@ public class MicInput {
                     if(output == null) { continue; }
 
                     try {
-                        for(i=0; i<read; i++) { output.send(buf[i]/32768.0f); }
+                        for(i=0; i<read; i++) {
+                            sample[ch++] = buf[i]/32768.0f;
+                            if(ch >= numChannels) {
+                                ch = 0;
+                                output.send(sample);
+                            }
+                        }
+                        output.endOfFrame(); // indicator for receiver to start processing
+
                     } catch (Exception e) { // something wrong with the receiver of the output
                         e.printStackTrace(System.err);
+                        outputEndOfStream();
                         break;
                     }
                 }
@@ -159,11 +181,18 @@ public class MicInput {
                 ar.release();
                 ar = null;
                 t = null;
+
+                outputEndOfStream();
             }
         };
 
         t.setPriority(Thread.MAX_PRIORITY);
         t.start();
+    }
+
+    private void outputEndOfStream() {
+        try { output.endOfStream(); }
+        catch (Exception e) { e.printStackTrace(System.err); }
     }
 
     public void pause() { paused = true; }
